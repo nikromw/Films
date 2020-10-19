@@ -24,5 +24,10 @@ namespace Films
         {
             InitializeComponent();
         }
+
+        private void filmsList_selection(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
     }
 }

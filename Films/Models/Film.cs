@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +11,25 @@ namespace Films.Models
 {
     class Film : INotifyPropertyChanged
     {
-        private bool _IsFavorit;
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, Column(Order = 0)]
+        public int? Id { get; set; }
         private string _Title, _Genre, _Writer , _Poster, _Runtime;
         private int _Year;
+        [NotMapped]
+        private bool _IsFavorit = false;
+        [NotMapped]
+        public bool isFavorit
+        {
+            get
+            {
+               return _IsFavorit;
+            }
+            set
+            {
+                _IsFavorit = value;
+            }
+        }
 
         public string Runtime
         {

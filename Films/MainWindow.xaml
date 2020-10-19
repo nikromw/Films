@@ -22,7 +22,13 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Path = Genre}" Header="Genre" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Path = Writer}" Header="Writer" Width="*" />
-                <DataGridCheckBoxColumn Binding="{Binding Path = IsFavorit , UpdateSourceTrigger=PropertyChanged}"  Header="Favorit" Width="*"/>
+                <DataGridTemplateColumn Header="Favorite" Width="*">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <CheckBox IsChecked="{Binding Path = IsFavorit , UpdateSourceTrigger=PropertyChanged}" Click="CheckBox_Click"   />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="SearhField" HorizontalAlignment="Left" Height="23" Margin="10,29,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="334" RenderTransformOrigin="-0.81,-3.487" TextChanged="TextBox_TextChanged"/>

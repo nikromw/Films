@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Films"
+             xmlns:local="clr-namespace:Films.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -11,12 +11,12 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
-                        <TextBlock Binding="{Binding Path = Title}" />
-                        <TextBlock Binding="{Binding Path = Runtime}" />
-                        <TextBlock Binding="{Binding Path = YearOfFilm}"/>
+                        <TextBlock Text="{Binding Path = Title}" />
+                        <TextBlock Text="{Binding Path = Runtime}" />
+                        <TextBlock Text="{Binding Path = YearOfFilm}"/>
                         <Image Width="64" Source="{Binding Path = Poster}" />
-                        <TextBlock Binding="{Binding Path = Genre}" />
-                        <TextBlock Binding="{Binding Path = Writer}"  />
+                        <TextBlock Text="{Binding Path = Genre}" />
+                        <TextBlock Text="{Binding Path = Writer}"  />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
