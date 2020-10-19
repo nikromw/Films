@@ -1,0 +1,17 @@
+C:\Users\Salvador\source\repos\Films\Films\bin\Debug\Films.exe.config
+C:\Users\Salvador\source\repos\Films\Films\bin\Debug\Films.exe
+C:\Users\Salvador\source\repos\Films\Films\bin\Debug\Films.pdb
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films.csprojAssemblyReference.cache
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\MainWindow.g.cs
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\App.g.cs
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films_MarkupCompile.cache
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films_MarkupCompile.lref
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\MainWindow.baml
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films.g.resources
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films.Properties.Resources.resources
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films.csproj.GenerateResource.cache
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films.csproj.CoreCompileInputs.cache
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films.exe
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films.pdb
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\FavoritesPage.g.cs
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\FavoritesPage.baml
