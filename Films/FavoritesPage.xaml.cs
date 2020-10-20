@@ -56,8 +56,11 @@ namespace Films
             using (var db = new FilmContext())
             {
                 var a = e.RoutedEvent.HandlerType;
-                db.Films.Remove((Film)filmsList.DataContext);
+                db.Films.Remove((Film)filmsList?.SelectedItem);
+                db.SaveChanges();
             }
+            filmsList.Items.Refresh();
+            this.Refresh();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
