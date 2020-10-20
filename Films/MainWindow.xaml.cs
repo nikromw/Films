@@ -106,7 +106,13 @@ namespace Films
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-            _searchRequest.GetFilm.isFavorit = !_searchRequest.GetFilm.isFavorit;
+            foreach (var film in _FilmList)
+            {
+                if (film == dgFilms.SelectedItem)
+                {
+                    film.isFavorit = !film.isFavorit;
+                }
+            }
         }
     }
 }
