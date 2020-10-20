@@ -1,6 +1,7 @@
 ﻿using Films.dbFilms;
 using Films.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,7 @@ namespace Films
                     filmsFromDb.Add(item);
                 }
             }
-            filmsList.ItemsSource = filmsFromDb;
+           filmsList.ItemsSource=filmsFromDb;
         }
 
         private void filmsList_selection(object sender, SelectionChangedEventArgs e)
@@ -53,18 +54,34 @@ namespace Films
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new FilmContext())
+            if (filmsList.SelectedItem != null)
             {
-                var a = e.RoutedEvent.HandlerType;
-                db.Films.Remove((Film)filmsList?.SelectedItem);
-                db.SaveChanges();
+                using (var db = new FilmContext())
+                {
+                    var a = e.RoutedEvent.HandlerType;
+                    db.Films.Remove((Film)filmsList?.SelectedItem);
+                    db.SaveChanges();
+                }
+                filmsFromDb = new List<Film>();
+                using (var db = new FilmContext())
+                {
+                    var content = from f in db.Films select f;
+                    foreach (var item in content)
+                    {
+                        Film a = new Film(item);
+                        filmsFromDb.Add(item);
+                    }
+                }
+                filmsList.ItemsSource = filmsFromDb;
+                filmsList.Items.Refresh();
+                this.Refresh();
             }
-            filmsList.Items.Refresh();
-            this.Refresh();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             this.Content =new SeachControl();
         }
     }
