@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Films.Models
 {
-    class Film : INotifyPropertyChanged
+   public class Film : INotifyPropertyChanged
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column(Order = 0)]
@@ -18,6 +18,27 @@ namespace Films.Models
         private int _Year;
         [NotMapped]
         private bool _IsFavorit = false;
+        private Film item;
+        [NotMapped]
+        public int? GetId
+        {
+            get 
+            {
+                return Id;
+            }
+            set
+            {
+                value = value;
+            }
+        }
+
+        public Film()
+        { }
+        public Film(Film item)
+        {
+            this.item = item;
+        }
+
         [NotMapped]
         public bool isFavorit
         {

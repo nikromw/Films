@@ -108,3 +108,5 @@ C:\Users\Salvador\source\repos\Films\Films\bin\Debug\ru\Microsoft.Data.SqlClient
 C:\Users\Salvador\source\repos\Films\Films\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Salvador\source\repos\Films\Films\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Salvador\source\repos\Films\Films\obj\Debug\Films.csproj.CopyComplete
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\SeachControl.g.cs
+C:\Users\Salvador\source\repos\Films\Films\obj\Debug\SeachControl.baml
