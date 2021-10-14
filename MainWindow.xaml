@@ -3,10 +3,48 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Films"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Films" Height="450" Width="800" Closed="CloseWindow">
+
     <Grid>
-        
+        <DataGrid AutoGenerateColumns="false" Margin="0,57,-0.4,0"
+                  SelectedItem="{Binding SelectedFilm , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=Films}">
+            <DataGrid.Columns >
+                <DataGridTemplateColumn  Header="Title" Width="*">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <TextBlock Name="FilmTitle"  BindingGroup="{Binding Path = Title}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path = Runtime}" Header="Runtime" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path = YearOfFilm}" Header="Year" Width="*"/>
+                <DataGridTemplateColumn Header="Image" Width="*">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <Image Width="64" Source="{Binding Path = Poster}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path = Genre}" Header="Genre" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path = Writer}" Header="Writer" Width="*" />
+                <DataGridTemplateColumn Header="Favorite" Width="*">
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <Button Name="checkBoxFavorite"  IsEnabled="{Binding Path = IsFavorit , UpdateSourceTrigger=PropertyChanged}" Command="{Binding FavoriteCommand}" CommandParameter="{Binding ElementName=FilmTitle, Path = Text}"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="SearhField" HorizontalAlignment="Left" Height="23" Margin="10,29,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="334" RenderTransformOrigin="-0.81,-3.487" />
+        <TextBlock HorizontalAlignment="Left" Margin="10,8,0,0" TextWrapping="Wrap" Text="Input title of the film" VerticalAlignment="Top" RenderTransformOrigin="-0.944,0.325" Width="126"/>
+        <Button Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding ElementName=SearhField, Path=Text}" HorizontalAlignment="Left" Margin="349,29,0,0" VerticalAlignment="Top" Width="75" Height="23" />
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Content="To Favorites" Margin="0,0,0,0.2" Width="85" Height="35" />
+        </StackPanel>
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
     </Grid>
+
 </Window>
