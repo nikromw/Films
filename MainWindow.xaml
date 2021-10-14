@@ -28,10 +28,10 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Path = Genre}" Header="Genre" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Path = Writer}" Header="Writer" Width="*" />
-                <DataGridTemplateColumn Header="Favorite" Width="*">
-                    <DataGridTemplateColumn.CellTemplate >
-                        <DataTemplate >
-                            <Button Name="checkBoxFavorite"  IsEnabled="{Binding Path = IsFavorit , UpdateSourceTrigger=PropertyChanged}" Command="{Binding FavoriteCommand}" CommandParameter="{Binding ElementName=FilmTitle, Path = Text}"  />
+                <DataGridTemplateColumn Header="Favorite" Width="*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate  >
+                            <CheckBox Name="checkBoxFavorite"  IsEnabled="{Binding Path = IsFavorit , UpdateSourceTrigger=PropertyChanged}" Command="{Binding FavoriteCommand}" CommandParameter="{Binding ElementName=FilmTitle, Path = Text}"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

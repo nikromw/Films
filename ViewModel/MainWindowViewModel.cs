@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using Films.Annotations;
 using Films.Commands;
+using Films.DataBase;
 using Films.Model;
 
 namespace Films.ViewModel
@@ -55,7 +56,8 @@ namespace Films.ViewModel
 
         public MainWindowViewModel()
         {
-            _searchCommand = new DelegateCommand<string>(Search);
+            _films = new ObservableCollection<Film>(DbHelper.GetAllFilms());
+               _searchCommand = new DelegateCommand<string>(Search);
             _favoriteCommand = new DelegateCommand<string>(MakeFavorite);
         }
 
