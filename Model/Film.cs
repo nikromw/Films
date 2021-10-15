@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using Films.Commands;
 using Films.DataBase;
 
 namespace Films.Model
 {
-    class Film : INotifyPropertyChanged
+    class Film: INotifyPropertyChanged
     {
         public int Id { get; set; }
         public string Runtime { get; set; }
@@ -21,7 +14,6 @@ namespace Films.Model
         public string Writer { get; set; }
         public int YearOfFilm { get; set; }
         public string Title { get; set; }
-
         private ICommand _favoriteCommand;
         private ICommand _deleteCommand;
 

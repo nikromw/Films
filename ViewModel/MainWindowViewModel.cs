@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 using Films.Annotations;
 using Films.Commands;
@@ -17,18 +14,6 @@ namespace Films.ViewModel
     {
         private ObservableCollection<Film> _films = new ObservableCollection<Film>();
         private ICommand _searchCommand;
-        private ICommand _favoriteCommand;
-        public static Film SelectedItem { get; set; }
-
-        public ICommand FavoriteCommand
-        {
-            get => _favoriteCommand;
-        }
-
-        public bool CanExecuteFavorite
-        {
-            get => _favoriteCommand == null;
-        }
 
         public ICommand SearchCommand
         {
@@ -68,9 +53,9 @@ namespace Films.ViewModel
 
             _searchRequest.SearcTtitle = filmName;
             _searchRequest.RequestSearch();
-            bool res = !_films.Any(film =>film.Title == _searchRequest.GetFilm.Title);
+            bool res = !_films.Any(film => film.Title == _searchRequest.GetFilm.Title);
 
-            if (Films.Any(film => film.Title == filmName))
+            if(Films.Any(film => film.Title == filmName))
                 return;
 
             _films.Add(_searchRequest.GetFilm);

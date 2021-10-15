@@ -8,7 +8,7 @@ namespace Films.DataBase
     {
         public static List<Film> GetAllFilms()
         {
-            using (var db = new FilmsContext())
+            using(var db = new FilmsContext())
             {
                 return db.Films.ToList();
             }
@@ -18,7 +18,7 @@ namespace Films.DataBase
         {
             using(var db = new FilmsContext())
             {
-                if (db.Films.Count(film => film.Title == favoriteFilm.Title) == 0)
+                if(db.Films.Count(film => film.Title == favoriteFilm.Title) == 0)
                     db.Films.Add(favoriteFilm);
 
                 db.SaveChanges();
