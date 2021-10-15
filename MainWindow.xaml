@@ -8,12 +8,12 @@
 
     <Grid>
         <DataGrid AutoGenerateColumns="false" Margin="0,57,-0.4,0"
-                  SelectedItem="{Binding SelectedFilm , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=Films}">
+                  SelectedItem="{Binding SelectedItem , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=Films}">
             <DataGrid.Columns >
                 <DataGridTemplateColumn  Header="Title" Width="*">
                     <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate >
-                            <TextBlock Name="FilmTitle"  BindingGroup="{Binding Path = Title}"></TextBlock>
+                            <TextBlock Name="FilmTitle"  Text="{Binding Path = Title}"></TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -31,7 +31,8 @@
                 <DataGridTemplateColumn Header="Favorite" Width="*" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate  >
-                            <CheckBox Name="checkBoxFavorite"  IsEnabled="{Binding Path = IsFavorit , UpdateSourceTrigger=PropertyChanged}" Command="{Binding FavoriteCommand}" CommandParameter="{Binding ElementName=FilmTitle, Path = Text}"  />
+                            <CheckBox Name="checkBoxFavorite"  IsEnabled="{Binding Path = IsFavorit , UpdateSourceTrigger=PropertyChanged}" Command="{Binding FavoriteCommand}"
+                                      CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -42,7 +43,7 @@
         <Button Content="Search" Command="{Binding SearchCommand}" CommandParameter="{Binding ElementName=SearhField, Path=Text}" HorizontalAlignment="Left" Margin="349,29,0,0" VerticalAlignment="Top" Width="75" Height="23" />
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-            <Button Content="To Favorites" Margin="0,0,0,0.2" Width="85" Height="35" />
+            <Button Content="To Favorites" Margin="0,0,0,0.2" Width="85" Height="35"  Click="GoToFavorite"/>
         </StackPanel>
         <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
     </Grid>

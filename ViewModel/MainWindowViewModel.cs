@@ -18,6 +18,7 @@ namespace Films.ViewModel
         private ObservableCollection<Film> _films = new ObservableCollection<Film>();
         private ICommand _searchCommand;
         private ICommand _favoriteCommand;
+        public static Film SelectedItem { get; set; }
 
         public ICommand FavoriteCommand
         {
@@ -57,8 +58,7 @@ namespace Films.ViewModel
         public MainWindowViewModel()
         {
             _films = new ObservableCollection<Film>(DbHelper.GetAllFilms());
-               _searchCommand = new DelegateCommand<string>(Search);
-            _favoriteCommand = new DelegateCommand<string>(MakeFavorite);
+            _searchCommand = new DelegateCommand<string>(Search);
         }
 
         private void Search(string filmName)
@@ -75,46 +75,6 @@ namespace Films.ViewModel
 
             _films.Add(_searchRequest.GetFilm);
         }
-
-        //добавление в любимых
-        private void MakeFavorite(string filmName)
-        {
-            //SaveDb();
-            //FavoritesPage fv = new FavoritesPage();
-            //this.Content = fv;
-        }
-
-        //private void SaveDb()
-        //{
-        //    using(var db = new FilmContext())
-        //    {
-        //        try
-        //        {
-        //            foreach(var film in _FilmList)
-        //            {
-        //                if(film.isFavorit)
-        //                    db.Add(film);
-        //            }
-        //            db.SaveChanges();
-
-        //        }
-        //        catch(Exception e)
-        //        {
-        //            Console.WriteLine(e.Message);
-        //        }
-        //    }
-        //}
-
-        //private void CheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    foreach(var film in _films)
-        //    {
-        //        if(film == dgFilms.SelectedItem)
-        //        {
-        //            film.isFavorit = !film.isFavorit;
-        //        }
-        //    }
-        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -26,5 +26,10 @@ namespace Films
 
         private void CloseWindow(object sender, EventArgs e)
         { }
+
+        private void GoToFavorite(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = new FavoriteViewModel();
+        }
     }
 }
