@@ -5,7 +5,7 @@ using Films.DataBase;
 
 namespace Films.Model
 {
-    class Film: INotifyPropertyChanged
+    class Film
     {
         public int Id { get; set; }
         public string Runtime { get; set; }
@@ -15,7 +15,11 @@ namespace Films.Model
         public int YearOfFilm { get; set; }
         public string Title { get; set; }
         private ICommand _favoriteCommand;
-        private ICommand _deleteCommand;
+
+        public ICommand FavoriteCommand
+        {
+            get => _favoriteCommand;
+        }
 
         public Film()
         {
@@ -25,18 +29,6 @@ namespace Films.Model
         private void SaveFavoriteInDb(Film film)
         {
             DbHelper.SaveFavoriteFilm(film);
-        }
-
-        private void DeleteFromFavorite(Film film)
-        {
-            DbHelper.DeleteFromDb(film);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

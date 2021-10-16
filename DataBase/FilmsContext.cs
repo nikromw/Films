@@ -5,7 +5,7 @@ namespace Films.DataBase
 {
     class FilmsContext : DbContext
     {
-        public FilmsContext() : base("DefaultConnection")
+        public FilmsContext() : base("FilmsDB")
         {
             Database.CreateIfNotExists();
         }

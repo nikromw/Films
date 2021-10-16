@@ -29,8 +29,10 @@ namespace Films.DataBase
         {
             using(var db = new FilmsContext())
             {
-                if(db.Films.Count(film => film.Title == favoriteFilm.Title) != 0)
-                    db.Films.Remove(favoriteFilm);
+                var deletedFilm = db.Films.FirstOrDefault(film => film.Title == favoriteFilm.Title);
+
+                if (deletedFilm != null)
+                    db.Films.Remove(deletedFilm);
 
                 db.SaveChanges();
             }

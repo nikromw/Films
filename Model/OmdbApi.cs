@@ -1,40 +1,34 @@
-﻿using System;
+﻿using System.Text.Json;
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Windows;
 
 namespace Films.Model
 {
     class OmdbApi
     {
-        private string _BaseUrl = "https://www.omdbapi.com/?t=";
-        private string _ApiKey = "2d10eac1";
-        private string _SearchTitle;
-        private Film _FindedFilm;
+        private const string BASE_URL = "https://www.omdbapi.com/?t=";
+        private const string API_KEY = "2d10eac1";
+        private string _searchTitle;
+        private Film _findedFilm;
 
         public Film GetFilm
         {
-            get
-            {
-                return _FindedFilm;
-            }
-
+            get => _findedFilm;
         }
         public string SearcTtitle
         {
             set
             {
-                _SearchTitle = value;
+                _searchTitle = value;
             }
         }
 
         public void RequestSearch()
         {
-            StringBuilder _request = new StringBuilder(_BaseUrl);
-            _request.Append(_SearchTitle);
-            _request.Append("&apikey=");
-            _request.Append(_ApiKey);
-            WebRequest request = WebRequest.Create(_request.ToString());
+            WebRequest request = WebRequest.Create(BASE_URL + _searchTitle + "&apikey=" + API_KEY);
             request.Method = "GET";
             request.Timeout = 10000;
             request.ContentType = "application/json";
@@ -42,60 +36,29 @@ namespace Films.Model
 
             try
             {
-                using(var response = request.GetResponse())
+                using(var reader = new StreamReader(request.GetResponse().GetResponseStream(), Encoding.UTF8))
                 {
-                    using(var stream = response.GetResponseStream())
-                    {
-                        using(var reader = new StreamReader(stream, Encoding.UTF8))
-                        {
-                            result = reader.ReadToEnd();
-                        }
-                    }
+                    result = reader.ReadToEnd();
                 }
-            }
-            catch(WebException e)
-            {
-                Console.WriteLine(e);
             }
             catch(Exception e)
             {
-                Console.WriteLine(e);
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            if(result != "{\"Response\":\"False\",\"Error\":\"Movie not found!\"}")
+
+            if(result == "{\"Response\":\"False\",\"Error\":\"Movie not found!\"}")
             {
-                ParseJson(result);
+                MessageBox.Show("Film not founded", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
             }
+
+            _findedFilm = null;
+            ParseJson(result);
         }
 
         private void ParseJson(string req)
         {
-            string[] separatingStrings = { "\",\"", "\":\"" };
-            _FindedFilm = new Film();
-            var JsonArr = req.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
-            for(int i = 0; i < JsonArr.Length; i++)
-            {
-                switch(JsonArr[i])
-                {
-                    case "{\"Title":
-                        _FindedFilm.Title = JsonArr[i + 1];
-                        break;
-                    case "Runtime":
-                        _FindedFilm.Runtime = JsonArr[i + 1];
-                        break;
-                    case "Genre":
-                        _FindedFilm.Genre = JsonArr[i + 1];
-                        break;
-                    case "Year":
-                        _FindedFilm.YearOfFilm = Convert.ToInt32(JsonArr[i + 1]);
-                        break;
-                    case "Writer":
-                        _FindedFilm.Writer = JsonArr[i + 1];
-                        break;
-                    case "Poster":
-                        _FindedFilm.Poster = JsonArr[i + 1];
-                        break;
-                }
-            }
+            _findedFilm = JsonSerializer.Deserialize<Film>(req);
         }
     }
 }
