@@ -23,10 +23,7 @@ namespace Films.ViewModel
 
         public ObservableCollection<Film> Films
         {
-            get
-            {
-                return _films;
-            }
+            get => _films;
             set
             {
                 _films = value;
@@ -41,13 +38,12 @@ namespace Films.ViewModel
 
         private void Search(string filmName)
         {
-            if(string.IsNullOrEmpty(filmName))
+            if (string.IsNullOrEmpty(filmName))
                 return;
+            
+            _searchRequest.RequestSearch(filmName);
 
-            _searchRequest.SearcTtitle = filmName;
-            _searchRequest.RequestSearch();
-
-            if(Films.Any(film => film.Title == filmName))
+            if (Films.Any(film => film.Title == filmName))
                 return;
 
             if (_searchRequest.GetFilm != null)

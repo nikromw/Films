@@ -26,7 +26,10 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <Button Content="Delete" HorizontalAlignment="Left" Margin="10,10,0,0" Command="{Binding Path=DeleteCommand}" CommandParameter="{Binding ElementName=FavoritesList, Path=SelectedItem}" VerticalAlignment="Top" Width="104" Height="45" />
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="10,10,0,0" 
+                Command="{Binding Path=DeleteCommand}" 
+                CommandParameter="{Binding ElementName=FavoritesList, Path=SelectedItem}" 
+                VerticalAlignment="Top" Width="104" Height="45" />
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Height="450" Margin="0,0,0,-0.4" Width="800">
             <Button Content="To Search" HorizontalAlignment="Left" Margin="680,10,10,0" VerticalAlignment="Top" Width="104" Height="45" Click="GoToSearch" />
         </StackPanel>
